@@ -1,8 +1,11 @@
 package org.example.Views;
 
-import javax.swing.*;
+import org.example.Controllers.LoginScreenListener;
 
-public class LoginScreen {
+import javax.swing.*;
+import java.awt.event.ActionListener;
+
+public class LoginScreen extends JFrame {
     private JPanel username_panel;
     private JLabel lb_username;
     private JTextField tf_username;
@@ -15,18 +18,34 @@ public class LoginScreen {
     private JButton btn_register;
     private JPanel LoginScreen;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("LoginScreen");
-        frame.setContentPane(new LoginScreen().LoginScreen);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public LoginScreen() {
+        ActionListener loginScreenListener = new LoginScreenListener(this);
+        btn_login.addActionListener(loginScreenListener);
+        btn_register.addActionListener(loginScreenListener);
+    }
 
+    public String getUsername() {
+        return tf_username.getText();
+    }
+    public String getPassword() {
+        return pf_password.getText();
+    }
+    public void init() {
+        this.setTitle("LoginScreen");
+        this.setContentPane(LoginScreen);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         int defaultWidth = 600;
         int defaultHeight = 400;
-        frame.setSize(defaultWidth, defaultHeight);
+        this.setSize(defaultWidth, defaultHeight);
 
         // auto-fit the size of the frame
         //frame.pack();
-
-        frame.setVisible(true);
+        setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    public static void main(String[] args) {
+        LoginScreen loginScreen = new LoginScreen();
+        System.out.println("LoginScreen");
+        loginScreen.init();
     }
 }

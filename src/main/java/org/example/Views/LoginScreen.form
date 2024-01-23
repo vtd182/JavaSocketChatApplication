@@ -98,6 +98,7 @@
         </constraints>
         <properties>
           <font name="Droid Sans Mono" size="14" style="1"/>
+          <selected value="false"/>
           <text value="Register"/>
         </properties>
       </component>
