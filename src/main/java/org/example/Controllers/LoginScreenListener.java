@@ -1,8 +1,10 @@
 package org.example.Controllers;
 
+import org.example.Views.AllServersScreen;
 import org.example.Views.LoginScreen;
 import org.example.Views.RegisterScreen;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,12 +20,9 @@ public class LoginScreenListener implements ActionListener {
         String src = e.getActionCommand();
         switch (src) {
             case "Login":
-                System.out.println("Login");
-                System.out.println(loginScreen.getUsername());
-                System.out.println(loginScreen.getPassword());
+                onLogin();
                 break;
             case "Register":
-                System.out.println("Register");
                 navigateToRegisterScreen();
                 loginScreen.setVisible(false);
                 break;
@@ -34,8 +33,36 @@ public class LoginScreenListener implements ActionListener {
     }
 
     private void navigateToRegisterScreen() {
-        System.out.println("navigateToRegisterScreen");
         RegisterScreen registerScreen = new RegisterScreen();
         registerScreen.init();
+    }
+
+    private void navigateToAllServersScreen() {
+        AllServersScreen allServersScreen = new AllServersScreen();
+    }
+
+    private void onLogin() {
+        String username = loginScreen.getUsername();
+        String password = loginScreen.getPassword();
+        System.out.println("onLogin");
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
+        if (validateLogin(username, password)) {
+            JOptionPane.showMessageDialog(loginScreen, "Login successfully");
+            navigateToAllServersScreen();
+            loginScreen.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(loginScreen, "Login failed");
+        }
+    }
+
+    private boolean validateLogin(String username, String password) {
+        boolean isValid = false;
+        try {
+            // TODO: validate username and password
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }

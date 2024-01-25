@@ -45,7 +45,6 @@ public class LoginScreen extends JFrame {
     }
     public static void main(String[] args) {
         LoginScreen loginScreen = new LoginScreen();
-        System.out.println("LoginScreen");
         loginScreen.init();
     }
 }

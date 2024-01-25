@@ -18,14 +18,12 @@ public class RegisterScreenListener implements ActionListener {
         String src = e.getActionCommand();
         switch (src) {
             case "Register":
-                System.out.println("Register");
                 onRegister(registerScreen.getUsername(),
                         registerScreen.getPassword(),
                         registerScreen.getConfirmPassword(),
                         registerScreen.getName());
                 break;
             case "Back to login":
-                System.out.println("Back");
                 navigateToLoginScreen();
                 registerScreen.setVisible(false);
                 break;
@@ -49,7 +47,8 @@ public class RegisterScreenListener implements ActionListener {
             JOptionPane.showMessageDialog(registerScreen, "Password and Confirm Password are not the same");
         } else {
             // TODO: register from database
-            JOptionPane.showMessageDialog(registerScreen, "Register successfully");
+            JOptionPane.showMessageDialog(registerScreen,
+                    "Register successfully, you will be redirected to login screen");
             navigateToLoginScreen();
             registerScreen.setVisible(false);
         }
