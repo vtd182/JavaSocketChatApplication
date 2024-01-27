@@ -24,6 +24,9 @@ public class User {
         hasNewMessage = false;
     }
 
+    public String getUsername() {
+        return username;
+    }
     @Override
     public String toString() {
         return this.name + " - " + this.isConnected;
