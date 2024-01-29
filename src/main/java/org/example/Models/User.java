@@ -1,24 +1,29 @@
 package org.example.Models;
 
 public class User {
-
-    private String id;
     private String username;
     private String password;
-    private String name;
+    private String displayName;
     private boolean isConnected;
     private boolean hasNewMessage;
 
-    public User(String id, String name, String username, String password) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        hasNewMessage = false;
+    public boolean isConnected() {
+        return isConnected;
     }
 
+    public void setConnected(boolean isConnected) {
+        this.isConnected = isConnected;
+    }
+
+    public boolean hasNewMessage() {
+        return hasNewMessage;
+    }
+
+    public void setHasNewMessage(boolean hasNewMessage) {
+        this.hasNewMessage = hasNewMessage;
+    }
     public User(String name, String username, String password) {
-        this.name = name;
+        this.displayName = name;
         this.username = username;
         this.password = password;
         hasNewMessage = false;
@@ -27,9 +32,13 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    public String getDisplayName() {
+        return displayName;
+    }
     @Override
     public String toString() {
-        return this.name + " - " + this.isConnected;
+        return this.displayName + " - " + this.isConnected;
     }
 
 }

@@ -19,6 +19,7 @@ public class LoginScreen extends JFrame {
     private JPanel LoginScreen;
 
     public LoginScreen() {
+        init();
         ActionListener loginScreenListener = new LoginScreenListener(this);
         btn_login.addActionListener(loginScreenListener);
         btn_register.addActionListener(loginScreenListener);
@@ -42,12 +43,5 @@ public class LoginScreen extends JFrame {
         //frame.pack();
         setLocationRelativeTo(null);
         this.setVisible(true);
-    }
-    public static void main(String[] args) {
-        LoginScreen loginScreen = new LoginScreen();
-        loginScreen.init();
-
-        ConfigServerScreen configServerScreen = new ConfigServerScreen();
-
     }
 }

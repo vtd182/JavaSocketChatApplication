@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RunClientConfig" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="org.example.Run.StartClientMain" />
+    <module name="MyChatSocketApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
