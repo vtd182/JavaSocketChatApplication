@@ -165,4 +165,14 @@ public class AllServersScreen extends JFrame {
             JOptionPane.showMessageDialog(this, "Please select a server to edit.", "Edit Server", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
+    public Server getSelectedServer() {
+        int selectedIndex = ServerList.getSelectedIndex();
+        if (selectedIndex != -1) {
+            return serverListModel.getElementAt(selectedIndex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a server to connect.", "Connect to Server", JOptionPane.INFORMATION_MESSAGE);
+            return null;
+        }
+    }
 }

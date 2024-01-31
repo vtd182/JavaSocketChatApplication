@@ -38,9 +38,6 @@ public class LoginScreen extends JFrame {
         int defaultWidth = 600;
         int defaultHeight = 400;
         this.setSize(defaultWidth, defaultHeight);
-
-        // auto-fit the size of the frame
-        //frame.pack();
         setLocationRelativeTo(null);
         this.setVisible(true);
     }

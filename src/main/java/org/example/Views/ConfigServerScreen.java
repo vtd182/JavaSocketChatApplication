@@ -1,7 +1,6 @@
 package org.example.Views;
 
 import org.example.Controllers.ConfigServerScreenListener;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
@@ -20,7 +19,6 @@ public class ConfigServerScreen extends JFrame {
     private JButton btn_process;
     private JTextArea txt_logs;
     private DefaultTableModel clientModel;
-
     public int getPort() {
         return Integer.parseInt(tf_port.getText());
     }
@@ -34,8 +32,6 @@ public class ConfigServerScreen extends JFrame {
         int defaultHeight = 400;
         this.setSize(defaultWidth, defaultHeight);
         btn_process.setText("Start server");
-        // auto-fit the size of the frame
-        //frame.pack();
         setLocationRelativeTo(null);
         this.setVisible(true);
     }

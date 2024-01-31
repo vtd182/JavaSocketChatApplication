@@ -21,6 +21,7 @@ public class RegisterScreen extends JFrame {
 
 
     public RegisterScreen() {
+        init();
         RegisterScreenListener registerScreenListener = new RegisterScreenListener(this);
         btn_register.addActionListener(registerScreenListener);
         btn_back.addActionListener(registerScreenListener);
@@ -46,13 +47,10 @@ public class RegisterScreen extends JFrame {
         this.setTitle("RegisterScreen");
         this.setContentPane(RegisterScreen);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         int defaultWidth = 600;
         int defaultHeight = 400;
         this.setSize(defaultWidth, defaultHeight);
         setLocationRelativeTo(null);
-        // auto-fit the size of the frame
-        //frame.pack();
         this.setVisible(true);
     }
 }

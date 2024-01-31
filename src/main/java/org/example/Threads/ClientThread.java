@@ -14,16 +14,16 @@ import java.util.ArrayList;
 /// This class is used to handle the client socket
 public class ClientThread implements Runnable{
     private Socket clientSocket;
-    private ArrayList<ClientThread> clients;
+    private ArrayList<ClientThread> clientThreads;
     private User currentUser;
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private ConfigServerScreen configServerScreen;
 
-    public ClientThread(ConfigServerScreen configServerScreen, Socket clientSocket, ArrayList<ClientThread> clients)
+    public ClientThread(ConfigServerScreen configServerScreen, Socket clientSocket, ArrayList<ClientThread> clientThreads)
             throws IOException {
         this.clientSocket = clientSocket;
-        this.clients = clients;
+        this.clientThreads = clientThreads;
         this.configServerScreen = configServerScreen;
         in = new ObjectInputStream(clientSocket.getInputStream());
         out = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -42,4 +42,6 @@ public class ClientThread implements Runnable{
     public void run() {
 
     }
+
+
 }

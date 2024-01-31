@@ -34,7 +34,6 @@ public class LoginScreenListener implements ActionListener {
 
     private void navigateToRegisterScreen() {
         RegisterScreen registerScreen = new RegisterScreen();
-        registerScreen.init();
     }
 
     private void navigateToAllServersScreen() {

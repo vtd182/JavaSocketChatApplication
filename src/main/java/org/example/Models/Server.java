@@ -2,10 +2,10 @@ package org.example.Models;
 
 public class Server {
     private String hostName;
-    private Integer port;
+    private int port;
     private String iconName;
 
-    public Server(String hostName, Integer port, String iconName) {
+    public Server(String hostName, int port, String iconName) {
         this.hostName = hostName;
         this.port = port;
         this.iconName = iconName;
@@ -19,7 +19,7 @@ public class Server {
         this.hostName = hostName;
     }
 
-    public Integer getPort() {
+    public int getPort() {
         return port;
     }
 
