@@ -66,6 +66,7 @@ public class ConfigServerScreenListener implements ActionListener {
                         configServerScreen.writeToLogs("A user connected!");
                         configServerScreen.validate();
                         ClientThread client = new ClientThread(configServerScreen, clientSocket, clientThreads);
+                        System.out.println("Executing client thread...");
                         clientThreads.add(client);
                         threadPool.execute(client);
                     }

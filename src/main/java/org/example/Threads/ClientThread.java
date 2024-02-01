@@ -4,9 +4,7 @@ import org.example.Models.User;
 import org.example.Views.AllServersScreen;
 import org.example.Views.ConfigServerScreen;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -25,8 +23,9 @@ public class ClientThread implements Runnable{
         this.clientSocket = clientSocket;
         this.clientThreads = clientThreads;
         this.configServerScreen = configServerScreen;
-        in = new ObjectInputStream(clientSocket.getInputStream());
-        out = new ObjectOutputStream(clientSocket.getOutputStream());
+
+        in = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+        out = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
     }
 
     public Socket getClientSocket() {
@@ -40,8 +39,7 @@ public class ClientThread implements Runnable{
 
     @Override
     public void run() {
-
+        configServerScreen.writeToLogs("Client connected: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+        System.out.println("Client connected: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
     }
-
-
 }
