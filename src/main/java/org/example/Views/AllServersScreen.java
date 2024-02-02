@@ -4,6 +4,7 @@ import org.example.Controllers.AllServersScreenListener;
 import org.example.Helpers.ServerFileHandler;
 import org.example.Models.Server;
 import org.example.Models.ServerRendered;
+import org.example.Models.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ import static org.example.Helpers.ServerFileHandler.toArray;
 
 public class AllServersScreen extends JFrame {
 
+    private User currentUser;
     private final String defautIcon = "/Assets/Images/serverIcon.png";
     private JPanel AllServersScreen;
     private JList<Server> ServerList;
@@ -26,7 +28,10 @@ public class AllServersScreen extends JFrame {
 
     DefaultListModel<Server> serverListModel;
 
-    public AllServersScreen() {
+    public User getCurrentUser() {
+        return currentUser;
+    }
+    public AllServersScreen(User user) {
         this.setTitle("AllServersScreen");
         this.setContentPane(AllServersScreen);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +40,7 @@ public class AllServersScreen extends JFrame {
         this.setSize(defaultWidth, defaultHeight);
         setLocationRelativeTo(null);
         this.setVisible(true);
-
+        this.currentUser = user;
         // Khởi tạo DefaultListModel cho JList
         serverListModel = new DefaultListModel<>();
         ServerList.setModel(serverListModel);

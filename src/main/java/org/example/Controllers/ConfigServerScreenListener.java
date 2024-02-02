@@ -54,10 +54,10 @@ public class ConfigServerScreenListener implements ActionListener {
         running.set(true);
         serverThread = new Thread(() -> {
             System.out.println("Server is running...");
-            try {
+            try
+            {
                 myServerSocket = new ServerSocket(PORT);
                 configServerScreen.writeToLogs("Server listening on port " + PORT);
-
                 try {
                     while (running.get()) {
                         configServerScreen.writeToLogs("Waiting for client...");
@@ -75,7 +75,8 @@ public class ConfigServerScreenListener implements ActionListener {
                         e.printStackTrace();
                     }
                 }
-            } catch (IOException e) {
+            } catch (IOException e)
+            {
                 e.printStackTrace();
             }
         });

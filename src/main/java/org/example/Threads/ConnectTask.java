@@ -7,19 +7,19 @@ import java.net.Socket;
 import java.util.function.Consumer;
 import javax.swing.SwingWorker;
 
-public class ConnectTask extends SwingWorker<Void, Void> {
+public class ConnectTask extends SwingWorker<Socket, Void> {
     private final Server selectedServer;
     private final Consumer<String> errorCallback;
-    private final Runnable successCallback;
+    private final Consumer<Socket> successCallback;
 
-    public ConnectTask(Server selectedServer, Consumer<String> errorCallback, Runnable successCallback) {
+    public ConnectTask(Server selectedServer, Consumer<String> errorCallback, Consumer<Socket> successCallback) {
         this.selectedServer = selectedServer;
         this.errorCallback = errorCallback;
         this.successCallback = successCallback;
     }
 
     @Override
-    protected Void doInBackground() {
+    protected Socket doInBackground() {
         try {
             System.out.println("Connecting to server: " + selectedServer);
 
@@ -32,14 +32,16 @@ public class ConnectTask extends SwingWorker<Void, Void> {
             System.out.println("Connected to server!");
 
             // Gọi callback khi kết nối thành công
-            successCallback.run();
+            successCallback.accept(clientSocket);
+
+            // Trả về socket
+            return clientSocket;
         } catch (Exception e) {
             // Xử lý lỗi và thông báo cho listener
             String errorMessage = "Cannot connect to server: " + e.getMessage();
             System.err.println(errorMessage);
             errorCallback.accept(errorMessage);
+            return null;
         }
-        return null;
     }
 }
-

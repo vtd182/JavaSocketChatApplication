@@ -1,5 +1,6 @@
 package org.example.Controllers;
 
+import org.example.Models.User;
 import org.example.Views.AllServersScreen;
 import org.example.Views.LoginScreen;
 import org.example.Views.RegisterScreen;
@@ -7,6 +8,7 @@ import org.example.Views.RegisterScreen;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class LoginScreenListener implements ActionListener {
 
@@ -36,8 +38,8 @@ public class LoginScreenListener implements ActionListener {
         RegisterScreen registerScreen = new RegisterScreen();
     }
 
-    private void navigateToAllServersScreen() {
-        AllServersScreen allServersScreen = new AllServersScreen();
+    private void navigateToAllServersScreen(User user) {
+        AllServersScreen allServersScreen = new AllServersScreen(user);
     }
 
     private void onLogin() {
@@ -46,9 +48,11 @@ public class LoginScreenListener implements ActionListener {
         System.out.println("onLogin");
         System.out.println("username: " + username);
         System.out.println("password: " + password);
+        String name = "User " + new Random().nextInt(100);
+        User user = new User(name, username, password);
         if (validateLogin(username, password)) {
             JOptionPane.showMessageDialog(loginScreen, "Login successfully");
-            navigateToAllServersScreen();
+            navigateToAllServersScreen(user);
             loginScreen.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(loginScreen, "Login failed");

@@ -54,9 +54,11 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="79abf" class="javax.swing.JList" binding="list1" default-binding="true">
+                  <component id="79abf" class="javax.swing.JList" binding="ls_user_list">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <model/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>
@@ -104,7 +106,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="cbb08" class="javax.swing.JTextPane" binding="textPane1" default-binding="true">
+                  <component id="cbb08" class="javax.swing.JTextPane" binding="display_message">
                     <constraints/>
                     <properties>
                       <editable value="false"/>
@@ -176,7 +178,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="c1143" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                      <component id="c1143" class="javax.swing.JTextArea" binding="type_message">
                         <constraints/>
                         <properties>
                           <lineWrap value="false"/>

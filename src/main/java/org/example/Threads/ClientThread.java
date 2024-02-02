@@ -20,12 +20,28 @@ public class ClientThread implements Runnable{
 
     public ClientThread(ConfigServerScreen configServerScreen, Socket clientSocket, ArrayList<ClientThread> clientThreads)
             throws IOException {
-        this.clientSocket = clientSocket;
-        this.clientThreads = clientThreads;
-        this.configServerScreen = configServerScreen;
+        try {
+            this.clientSocket = clientSocket;
+            this.clientThreads = clientThreads;
+            this.configServerScreen = configServerScreen;
+            System.out.println("ClientThread constructor: Initializing streams...");
 
-        in = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
-        out = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+            out = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+            System.out.println("ClientThread constructor: Output stream initialized successfully.");
+            System.out.println("Socket isClose: " + clientSocket.isClosed());
+            if (clientSocket.getInputStream() == null) {
+                System.out.println("ClientThread constructor: Input stream is null.");
+            } else {
+                System.out.println("ClientThread constructor: Input stream is not null.");
+            }
+            System.out.println("Socket isClose: " + clientSocket.isClosed());
+            in = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+            System.out.println("ClientThread constructor: Input stream initialized successfully.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error in ClientThread constructor: " + e.getMessage());
+        }
     }
 
     public Socket getClientSocket() {
@@ -39,7 +55,7 @@ public class ClientThread implements Runnable{
 
     @Override
     public void run() {
-        configServerScreen.writeToLogs("Client connected: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-        System.out.println("Client connected: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+        System.out.println("Client thread running...");
     }
+
 }

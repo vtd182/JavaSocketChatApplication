@@ -1,6 +1,7 @@
 package org.example.Controllers;
 
 import org.example.Models.Server;
+import org.example.Models.User;
 import org.example.Threads.ConnectTask;
 import org.example.Views.AllServersScreen;
 import org.example.Views.HomeScreen;
@@ -46,15 +47,28 @@ public class AllServersScreenListener implements ActionListener {
             return;
         }
 
-        ConnectTask connectTask = new ConnectTask(selectedServer,
-                errorMessage -> System.out.println(errorMessage),
-                () -> navigateToHomeScreen());
-
+        ConnectTask connectTask = new ConnectTask(
+                selectedServer,
+                errorMessage -> {
+                    System.out.println(errorMessage);
+                    // Xử lý lỗi, nếu cần
+                },
+                socket -> {
+                    // Thực hiện các thao tác sau khi kết nối thành công sử dụng biến socket
+                    System.out.println("Connected to server!");
+                    try {
+                        navigateToHomeScreen(socket, selectedServer, allServersScreen.getCurrentUser());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
         connectTask.execute();
     }
 
-    private void navigateToHomeScreen() {
-        HomeScreen homeScreen = new HomeScreen();
+
+    private void navigateToHomeScreen(Socket socket, Server server, User user) throws IOException {
+        HomeScreen homeScreen = new HomeScreen(socket, server, user);
         allServersScreen.setVisible(false);
     }
 }
