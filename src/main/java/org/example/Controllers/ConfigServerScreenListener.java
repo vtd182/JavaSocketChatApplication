@@ -95,6 +95,7 @@ public class ConfigServerScreenListener implements ActionListener {
             configServerScreen.validate();
         } catch (IOException e) {
             configServerScreen.writeToLogs("Error while stopping server: " + e.getMessage());
+
         }
     }
 }

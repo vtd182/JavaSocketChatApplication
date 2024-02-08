@@ -1,26 +1,28 @@
 package org.example.Threads;
 
 import org.example.Models.Message;
+import org.example.Models.User;
 import org.example.Views.HomeScreen;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 // this class is used to read (received) the messages from the server or the client
 public class ReadThread implements Runnable{
     private ObjectInputStream reader;
-    private Socket socket;
-    private HomeScreen client;
-    public ReadThread(HomeScreen c, Socket s) {
-        this.client = c;
-        this.socket = s;
+    private Socket clientSocket;
+    private HomeScreen homeScreen;
+    public ReadThread(HomeScreen homeScreen, Socket clientSocket) {
+        this.homeScreen = homeScreen;
+        this.clientSocket = clientSocket;
     }
 
     @Override
     public void run() {
         try {
-            reader = new ObjectInputStream(socket.getInputStream());
+            reader = new ObjectInputStream(clientSocket.getInputStream());
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -31,13 +33,17 @@ public class ReadThread implements Runnable{
                 switch (response.getType()) {
                     case "FETCH_USERS" -> {
                         System.out.println(response.getType());
-                        //client.updateListUsers((ArrayList<User>) response.getPayload());
-                        //client.setDefaultUserSelection();
+                        ArrayList<User> users = (ArrayList<User>) response.getPayload();
+                        for (User user : users) {
+                            System.out.println(user.getDisplayName());
+                        }
+                        homeScreen.updateListUsers(users);
+                        homeScreen.setDefaultUserSelection();
                         break;
                     }
                     case "USER_CONN" -> {
                         System.out.println("USER_CONN");
-                        //client.setUserOnline((User) response.getPayload());
+                        homeScreen.setUserOnline((User) response.getPayload());
                         break;
                     }
                     case "PRIVATE_MESSAGE" -> {

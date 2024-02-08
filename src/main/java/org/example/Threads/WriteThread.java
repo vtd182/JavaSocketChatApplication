@@ -4,6 +4,7 @@ import org.example.Models.Message;
 import org.example.Models.User;
 import org.example.Views.HomeScreen;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -25,6 +26,14 @@ public class WriteThread implements Runnable {
     }
     @Override
     public void run() {
-
+        try {
+            writer.writeObject(message);
+            if(message.getType().equals("PRIVATE_MESSAGE")) {
+                System.out.println("sending private");
+            }
+            writer.flush();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }

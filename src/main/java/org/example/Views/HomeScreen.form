@@ -122,31 +122,31 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="21c0" class="javax.swing.JButton" binding="button1" default-binding="true">
+                  <component id="21c0" class="javax.swing.JButton" binding="btn_like">
                     <constraints/>
                     <properties>
                       <text value="Button"/>
                     </properties>
                   </component>
-                  <component id="326c8" class="javax.swing.JButton" binding="button2" default-binding="true">
+                  <component id="326c8" class="javax.swing.JButton" binding="btn_shock">
                     <constraints/>
                     <properties>
                       <text value="Button"/>
                     </properties>
                   </component>
-                  <component id="6613d" class="javax.swing.JButton" binding="button3" default-binding="true">
+                  <component id="6613d" class="javax.swing.JButton" binding="btn_happy">
                     <constraints/>
                     <properties>
                       <text value="Button"/>
                     </properties>
                   </component>
-                  <component id="fa97c" class="javax.swing.JButton" binding="button4" default-binding="true">
+                  <component id="fa97c" class="javax.swing.JButton" binding="btn_sad">
                     <constraints/>
                     <properties>
                       <text value="Button"/>
                     </properties>
                   </component>
-                  <component id="1d6bb" class="javax.swing.JButton" binding="button5" default-binding="true">
+                  <component id="1d6bb" class="javax.swing.JButton" binding="btn_smile">
                     <constraints/>
                     <properties>
                       <text value="Button"/>

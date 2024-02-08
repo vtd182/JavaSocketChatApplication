@@ -23,21 +23,21 @@ public class ConnectTask extends SwingWorker<Socket, Void> {
         try {
             System.out.println("Connecting to server: " + selectedServer);
 
-            // Thiết lập timeout cho kết nối
-            int timeout = 5000; // Timeout là 5 giây (có thể điều chỉnh theo nhu cầu)
+            // set timeout for connection
+            int timeout = 5000; // 5 seconds
             Socket clientSocket = new Socket();
             clientSocket.connect(new InetSocketAddress(selectedServer.getHostName(), selectedServer.getPort()), timeout);
 
-            // Thực hiện các thao tác cần thiết sau khi kết nối thành công.
+
             System.out.println("Connected to server!");
 
-            // Gọi callback khi kết nối thành công
+            // Call the success callback
             successCallback.accept(clientSocket);
 
-            // Trả về socket
+            // return the client socket
             return clientSocket;
         } catch (Exception e) {
-            // Xử lý lỗi và thông báo cho listener
+            // Handle the error and call the error callback
             String errorMessage = "Cannot connect to server: " + e.getMessage();
             System.err.println(errorMessage);
             errorCallback.accept(errorMessage);

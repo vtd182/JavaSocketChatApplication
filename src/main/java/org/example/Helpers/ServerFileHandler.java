@@ -57,7 +57,6 @@ public class ServerFileHandler {
 
     public static void checkAndCreateFile() {
         File file = new File(FILE_PATH);
-
         // Kiểm tra xem tệp tồn tại hay không
         if (!file.exists()) {
             try {

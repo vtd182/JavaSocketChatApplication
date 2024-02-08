@@ -11,6 +11,7 @@ public class UserRendered extends JPanel implements ListCellRenderer<User> {
     private JLabel lbNewMessage = new JLabel();
     private User currentUser;
 
+    private final String defaultIcon = "Assets/user_profile.png";
     public UserRendered(User currentUser) {
         this.currentUser = currentUser;
         setLayout(new BorderLayout(10, 10));
@@ -26,7 +27,7 @@ public class UserRendered extends JPanel implements ListCellRenderer<User> {
 
     @Override
     public Component getListCellRendererComponent(JList<? extends User> list, User value, int index, boolean isSelected, boolean cellHasFocus) {
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("Assets/user_profile.png"))
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(defaultIcon)
                 .getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         lbIcon.setIcon(imageIcon);
         if(value.getUsername().equals(currentUser.getUsername())) {
@@ -48,11 +49,24 @@ public class UserRendered extends JPanel implements ListCellRenderer<User> {
         lbIcon.setOpaque(true);
         // when select item
         if(isSelected) {
-            lbUsername.setBackground(list.getSelectionBackground());
-            lbStatus.setBackground(list.getSelectionBackground());
-            lbIcon.setBackground(list.getSelectionBackground());
-            lbNewMessage.setBackground(list.getSelectionBackground());
-            setBackground(list.getSelectionBackground());
+            Color selectionColor = list.getSelectionBackground();
+
+            // Sử dụng AlphaComposite để đè lên màu trong suốt
+            float alpha = 0.5f; // Điều chỉnh độ đậm của màu trong suốt
+            Color translucentColor = new Color(selectionColor.getRed(), selectionColor.getGreen(), selectionColor.getBlue(), (int) (alpha * 255));
+
+            float alpha2 = 0.44f; // Điều chỉnh độ đậm của màu trong suốt
+            Color translucentColor1 = new Color(selectionColor.getRed(), selectionColor.getGreen(), selectionColor.getBlue(), (int) (alpha2 * 255));
+
+            float alpha3 = 0f; // Điều chỉnh độ đậm của màu trong suốt
+            Color translucentColor2 = new Color(selectionColor.getRed(), selectionColor.getGreen(), selectionColor.getBlue(), (int) (alpha3 * 255));
+
+            lbUsername.setBackground(translucentColor1);
+            lbStatus.setBackground(translucentColor1);
+            lbIcon.setBackground(translucentColor2);
+            lbNewMessage.setBackground(translucentColor1);
+
+            setBackground(translucentColor);
         } else {
             // when don't select
             lbUsername.setBackground(list.getBackground());
